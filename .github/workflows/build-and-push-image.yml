@@ -1,4 +1,4 @@
-name: Build and push example Docker image
+name: Run tests
 
 on:
   workflow_dispatch:
@@ -26,7 +26,7 @@ jobs:
       id: meta
       uses: docker/metadata-action@v4
       with:
-        images: ghcr.io/echus/example
+        images: ghcr.io/echus/example-image
         flavor: |
           latest=true
 
@@ -48,7 +48,7 @@ jobs:
       packages: read
 
     container:
-      image: ghcr.io/echus/example:latest
+      image: ghcr.io/echus/example-image:latest
       credentials:
         username: ${{ github.repository_owner }}
         password: ${{ secrets.GITHUB_TOKEN }}
